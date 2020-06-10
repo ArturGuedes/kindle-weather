@@ -1,6 +1,9 @@
 # Kindle Weather Page
 >Página com previsão do tempo para o Navegador experimental do Kindle.
 
+[![GitHub last commit](https://img.shields.io/github/last-commit/ArturGuedes/kindle-weather.svg)]()
+[![GitHub release](https://img.shields.io/github/release/ArturGuedes/kindle-weather.svg)]()
+
 Esta página exibe a previsão do tempo para algumas cidades do Brasil usando a API [MetaWeather](https://www.metaweather.com/).
 
 Obs.: Devido a constante atualização, esta página pode consumir um pouco mais de bateria.
