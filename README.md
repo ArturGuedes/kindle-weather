@@ -1,1 +1,1 @@
-# kindle-weather
+# Kindle Wather Page

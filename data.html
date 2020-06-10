@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        p {
+            font-size: 9pt;
+        }
+
+        #today_container {
+            width: 1072px;
+            height: 800px;
+            text-align: center;
+        }
+
+        #title {
+            margin-bottom: 80px;
+        }
+
+        #today {
+            padding: 80px 40px;
+        }
+
+        #today>div {
+            float: left;
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        #today img {
+            width: 350px;
+        }
+
+        #next_days {
+            height: 480px;
+            background-color: rgb(243, 243, 243);
+            text-align: center;
+        }
+
+        #next_days div {
+            float: left;
+            height: 480px;
+            width: 337px;
+            padding: 15px;
+            margin-top: 50px;
+            box-sizing: border-box;
+        }
+
+        #next_days div img {
+            width: 150px;
+        }
+
+        #temp_today {
+            font-size: 60pt;
+        }
+
+        #max_today::before {
+            content: "Max: ";
+            text-emphasis: unset;
+        }
+
+        #footer{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="today_container">
+        <div id="today">
+            <h1 id="title">Carregando...</h1>
+            <div>
+                <p><span id="state_today">Carregando...</span>
+                <p><img src="" id="state_image_today" /></p>
+            </div>
+            <div>
+                <p><span id="temp_today">0.0</span>ºC</p>
+                <p>Max: <span id="max_today">0.0</span>ºC</p>
+                <p>Min: <span id="min_today">0.0</span>ºC</p>
+            </div>
+        </div>
+    </div>
+    <div id="next_days">
+        <div>
+            <h2>Amanhã:</h2>
+            <img src="" id="state_image_next_day1" />
+            <p><span id="state_next_day1">Carregando...</span></p>
+            <p>Max: <span id="max_next_day1">0.0</span>ºC</p>
+            <p>Min: <span id="min_next_day1">0.0</span>ºC</p>
+            </p>
+        </div>
+        <div>
+            <h2 id="next_day2_title">Carregando...</h2>
+            <img src="" id="state_image_next_day2" />
+            <p><span id="state_next_day2">Carregando...</span></p>
+            <p>Max: <span id="max_next_day2">0.0</span>ºC</p>
+            <p>Min: <span id="min_next_day2">0.0</span>ºC</p>
+            </p>
+        </div>
+        <div>
+            <h2 id="next_day3_title">Carregando...</h2>
+            <img src="" id="state_image_next_day3" />
+            <p><span id="state_next_day3">Carregando...</span></p>
+            <p>Max: <span id="max_next_day3">0.0</span>ºC</p>
+            <p>Min: <span id="min_next_day3">0.0</span>ºC</p>
+            </p>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="timeTxt">HORA</div>
+        "Icons made by <a href="https://www.flaticon.com/authors/freepik">Freepik</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a>"
+    </div>
+
+
+    <script>
+        // Util
+        function $(value) { return document.getElementById(value) }
+        function zeroBefore(value) { return String("0" + value).slice(-2); }
+
+        // Declarações 
+        var title = $("title");
+
+        var temp_today = $("temp_today");
+        var max_today = $("max_today");
+        var min_today = $("min_today");
+        var state_today = $("state_today");
+        var state_image_today = $("state_image_today");
+
+        var max_next_day1 = $("max_next_day1");
+        var min_next_day1 = $("min_next_day1");
+        var state_next_day1 = $("state_next_day1");
+        var state_image_next_day1 = $("state_image_next_day1");
+
+        var next_day2_title = $("next_day2_title");
+        var max_next_day2 = $("max_next_day2");
+        var min_next_day2 = $("min_next_day2");
+        var state_next_day2 = $("state_next_day2");
+        var state_image_next_day2 = $("state_image_next_day2");
+
+        var next_day3_title = $("next_day3_title");
+        var max_next_day3 = $("max_next_day3");
+        var min_next_day3 = $("min_next_day3");
+        var state_next_day3 = $("state_next_day3");
+        var state_image_next_day3 = $("state_image_next_day3");
+
+        var url = "https://www.metaweather.com/api/location/455825/"
+
+        var arrWeatherState = [
+            { abbr: "sn", title: "Nevasca", image: "https://image.flaticon.com/icons/svg/2893/2893050.svg" },
+            { abbr: "sl", title: "Geada", image: "https://image.flaticon.com/icons/svg/2893/2893056.svg" },
+            { abbr: "h", title: "Granizo", image: "https://image.flaticon.com/icons/svg/2893/2893056.svg" },
+            { abbr: "t", title: "Tempestade", image: "https://image.flaticon.com/icons/svg/2893/2893130.svg" },
+            { abbr: "hr", title: "Chuva forte", image: "https://image.flaticon.com/icons/svg/2893/2893142.svg" },
+            { abbr: "lr", title: "Chuva fraca", image: "https://image.flaticon.com/icons/svg/2893/2893142.svg" },
+            { abbr: "s", title: "Chuvoso", image: "https://image.flaticon.com/icons/svg/2893/2893142.svg" },
+            { abbr: "hc", title: "Parcial. Nublado", image: "https://image.flaticon.com/icons/svg/2892/2892994.svg" },
+            { abbr: "lc", title: "Pouco Nublado", image: "https://image.flaticon.com/icons/svg/2892/2892994.svg" },
+            { abbr: "c", title: "Limpo", image: "https://image.flaticon.com/icons/svg/2893/2893120.svg" }
+        ];
+
+        var dayOfWeek = [
+            "Domingo:",
+            "Segunda:",
+            "Terça:",
+            "Quarta:",
+            "Quinta:",
+            "Sexta:",
+            "Sábado:",
+            "Domingo:",
+            "Segunda:",
+            "Terça:"
+        ]
+
+        // Controle de Tempo
+        function setTime() {
+            var time = new Date();
+            hour = zeroBefore(time.getUTCHours() - 3);
+            min = zeroBefore(time.getMinutes());
+            sec = zeroBefore(time.getSeconds());
+            timeTxt.innerText = hour + ":" + min + ":" + sec;
+
+            next_day2_title.innerText = dayOfWeek[time.getDay() + 2]
+            next_day3_title.innerText = dayOfWeek[time.getDay() + 3]
+        }
+
+        // Controle de Temperatura
+        function findWeatherState(abbr) {
+            var obj = {};
+            for (var i = 0; i < arrWeatherState.length; i++) {
+                if (arrWeatherState[i].abbr === abbr) {
+                    obj = arrWeatherState[i];
+                }
+            }
+            return obj;
+        }
+        function setWeather() {
+            var weatherResponse = {
+                consolidated_weather: [
+                    {
+                        max_temp: 0.1,
+                        min_temp: 0.1,
+                        weather_state_abbr: "c",
+                        the_temp: 0.1
+                    }
+                ]
+            };
+            var xhr = new XMLHttpRequest()
+
+            xhr.open("GET", "https://cors-anywhere.herokuapp.com/" + url, true)
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    weatherResponse = JSON.parse(xhr.responseText);
+
+                    title.innerText = weatherResponse.title;
+
+                    var objToday = findWeatherState(weatherResponse.consolidated_weather[0].weather_state_abbr);
+                    temp_today.innerText = Number(weatherResponse.consolidated_weather[0].the_temp).toFixed(1);
+                    max_today.innerText = Number(weatherResponse.consolidated_weather[0].max_temp).toFixed(1);
+                    min_today.innerText = Number(weatherResponse.consolidated_weather[0].min_temp).toFixed(1);
+                    state_today.innerText = objToday.title;
+                    state_image_today.src = objToday.image;
+
+                    var objNextDay1 = findWeatherState(weatherResponse.consolidated_weather[1].weather_state_abbr);
+                    max_next_day1.innerText = Number(weatherResponse.consolidated_weather[1].max_temp).toFixed(1);
+                    min_next_day1.innerText = Number(weatherResponse.consolidated_weather[1].min_temp).toFixed(1);
+                    state_next_day1.innerText = objNextDay1.title;
+                    state_image_next_day1.src = objNextDay1.image;
+
+                    var objNextDay2 = findWeatherState(weatherResponse.consolidated_weather[2].weather_state_abbr);
+                    max_next_day2.innerText = Number(weatherResponse.consolidated_weather[2].max_temp).toFixed(1);
+                    min_next_day2.innerText = Number(weatherResponse.consolidated_weather[2].min_temp).toFixed(1);
+                    state_next_day2.innerText = objNextDay2.title;
+                    state_image_next_day2.src = objNextDay2.image;
+
+                    var objNextDay3 = findWeatherState(weatherResponse.consolidated_weather[3].weather_state_abbr);
+                    max_next_day3.innerText = Number(weatherResponse.consolidated_weather[3].max_temp).toFixed(1);
+                    min_next_day3.innerText = Number(weatherResponse.consolidated_weather[3].min_temp).toFixed(1);
+                    state_next_day3.innerText = objNextDay3.title;
+                    state_image_next_day3.src = objNextDay3.image;
+
+
+                }
+            }
+            xhr.send()
+        }
+        setWeather();
+
+
+        // Controles de intervalo
+        setInterval(function () { setTime() }, 1000);
+        setInterval(function () { setWeather(); }, 60000);
+
+    </script>
+</body>
+</html>
