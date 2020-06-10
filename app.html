@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="today_container">
+        <div id="city_container">
+            <select name="city" id="city">
+                <option value="455819">Brasília</option>
+                <option value="455825" selected="selected">Rio de Janeiro</option>
+                <option value="455826">Salvador</option>
+                <option value="455827">São Paulo</option>
+            </select>
+        </div>
+        <div id="today">
+            <div>
+                <p id="state_today">Carregando...</p>
+                <p><img src="/src/icon_loading.svg" id="state_image_today" /></p>
+            </div>
+            <div>
+                <p id="temp_today">0.0</p>
+                <p id="max_today">0.0</p>
+                <p id="min_today">0.0</p>
+            </div>
+        </div>
+    </div>
+    <div id="next_days_container">
+        <div>
+            <h2>Amanhã:</h2>
+            <img src="/src/icon_loading.svg" id="state_image_next_day1" />
+            <p id="state_next_day1">Carregando...</p>
+            <p id="max_next_day1">0.0</p>
+            <p id="min_next_day1">0.0</p>
+            </p>
+        </div>
+        <div>
+            <h2 id="next_day2_title">Carregando...</h2>
+            <img src="/src/icon_loading.svg" id="state_image_next_day2" />
+            <p id="state_next_day2">Carregando...</p>
+            <p id="max_next_day2">0.0</p>
+            <p id="min_next_day2">0.0</p>
+            </p>
+        </div>
+        <div>
+            <h2 id="next_day3_title">Carregando...</h2>
+            <img src="/src/icon_loading.svg" id="state_image_next_day3" />
+            <p id="state_next_day3">Carregando...</p>
+            <p id="max_next_day3">0.0</p>
+            <p id="min_next_day3">0.0</p>
+            </p>
+        </div>
+    </div>
+    <div id="footer_container">
+        <p id="timeTxt">00:00:00</p>
+        <p><b>Kindle Weather Page v1.0.1</b></p>
+        <p><a href="https://github.com/ArturGuedes/kindle-weather">https://github.com/ArturGuedes/kindle-weather</a></p>
+        <p>Icons made by <a href="https://www.flaticon.com/authors/freepik">Freepik</a> from <a href="https://www.flaticon.com/">www.flaticon.com</a></p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

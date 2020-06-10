@@ -1,0 +1,94 @@
+* {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+p {
+  font-size: 9pt;
+}
+#today_container {
+  width: 1072px;
+  padding: 80px 00px;
+  text-align: center;
+  box-sizing: border-box;
+  height: 800px;
+}
+#today_container #city_container {
+  width: 100%;
+  margin-bottom: 80px;
+}
+#today_container #city_container #city {
+  font-weight: bold;
+  font-size: 12pt;
+  padding: 0 20px;
+}
+#today_container #today {
+  display: inline-block;
+  margin: 0 auto;
+}
+#today_container #today img {
+  width: 350px;
+  height: 350px;
+}
+#today_container #today > div {
+  float: left;
+  text-align: center;
+}
+#today_container #today #temp_today {
+  font-size: 60pt;
+}
+#today_container #today #temp_today::after {
+  content: "ºC";
+  font-size: 14pt;
+  position: relative;
+  top: -33pt;
+}
+#next_days_container {
+  width: 1072px;
+  height: 480px;
+  background-color: #f3f3f3;
+  text-align: center;
+}
+#next_days_container div {
+  float: left;
+  height: 480px;
+  width: 357.33333333px;
+  padding: 15px;
+  padding-top: 50px;
+  box-sizing: border-box;
+}
+#next_days_container div img {
+  width: 150px;
+  height: 150px;
+}
+#footer_container {
+  width: 1072px;
+  background: gray;
+  text-align: center;
+}
+#footer_container p {
+  font-size: 6pt;
+}
+#max_today::before,
+#max_next_day1::before,
+#max_next_day2::before,
+#max_next_day3::before {
+  content: "↑ ";
+}
+#max_today::after,
+#max_next_day1::after,
+#max_next_day2::after,
+#max_next_day3::after {
+  content: "ºC";
+}
+#min_today::before,
+#min_next_day1::before,
+#min_next_day2::before,
+#min_next_day3::before {
+  content: "↓ ";
+}
+#min_today::after,
+#min_next_day1::after,
+#min_next_day2::after,
+#min_next_day3::after {
+  content: "ºC";
+}
